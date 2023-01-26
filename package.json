@@ -1,0 +1,27 @@
+{
+  "name": "classeviva2caldav",
+  "version": "1.0.0",
+  "description": "Add new Classeviva events to a WebDAV calendar",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asasamo/classeviva2caldav.git"
+  },
+  "author": "Elia Polloniato",
+  "license": "CC",
+  "bugs": {
+    "url": "https://github.com/asasamo/classeviva2caldav/issues"
+  },
+  "homepage": "https://github.com/asasamo/classeviva2caldav#readme",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.2.4",
+    "chalk": "^5.2.0",
+    "lowdb": "^5.0.5",
+    "node-cron": "^3.0.2",
+    "tsdav": "^2.0.3"
+  }
+}
