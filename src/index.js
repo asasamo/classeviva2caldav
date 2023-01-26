@@ -24,7 +24,6 @@ schedule(_const.cron || "0,30 * * * *", async () => {
             process.exit(1);
         });
 
-    let eventsSent = 0;
     // Get the agenda
     await user.getAgenda(new Date(), new Date(Date.now() + _const.days * 24 * 60 * 60 * 1000))
         .then(agenda => {
@@ -39,9 +38,6 @@ schedule(_const.cron || "0,30 * * * *", async () => {
                         logger.error("Error sending the event to calendar: " + error);
                     });
             });
-        })
-        .then(() => {
-            logger.log("Sent " + eventsSent + " new events to calendar.");
         })
         .catch(error => {
             logger.error("Error getting the agenda: " + error);
