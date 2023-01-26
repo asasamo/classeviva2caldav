@@ -8,7 +8,7 @@ import { JSONFile } from 'lowdb/node';
 
 // File path
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const file = join(__dirname, 'db.json');
+const file = join(__dirname, 'vol/db.json');
 
 const adapter = new JSONFile(file);
 const db = new Low(adapter);
@@ -18,6 +18,8 @@ logger.log("Database loaded!");
 
 // Set default data if file is empty
 db.data ||= { agenda: [] };
+
+await db.write();
 
 export default {
     saveToDB: async function (e) {

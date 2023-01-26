@@ -10,7 +10,7 @@ import _const from "./const.js";
 const user = new User(process.env.USER_ID, process.env.PASSWORD)
 
 // cron job
-schedule(_const.cron || "* * * * *", async () => {
+schedule(_const.cron || "0,30 * * * *", async () => {
     logger.info("Starting cron job...")
 
     // Login
@@ -31,7 +31,7 @@ schedule(_const.cron || "* * * * *", async () => {
             logger.log("Agenda retrieved");
             agenda.forEach(async e => {
                 // Send the event to calendar
-                await client.sendToCalendar(e)
+                client.sendToCalendar(e)
                     .then((res) => {
                         logger.debug("Done");
                         eventsSent++;
@@ -40,9 +40,10 @@ schedule(_const.cron || "* * * * *", async () => {
                     });
             });
         })
+        .then(() => {
+            logger.log("Sent " + eventsSent + " new events to calendar.");
+        })
         .catch(error => {
             logger.error("Error getting the agenda: " + error);
         });
-
-    logger.log("Sent " + eventsSent + " new events to calendar.");
 });

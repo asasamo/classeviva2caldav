@@ -9,7 +9,7 @@ services:
       - .env
     container_name: classeviva2caldav
     volumes:
-      - ./db/db.json:/usr/src/app/src/db/db.json
+      - ./db:/usr/src/app/src/db/vol
     environment:
       - TZ=Europe/Rome
     restart: unless-stopped
