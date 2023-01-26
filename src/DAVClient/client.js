@@ -1,5 +1,5 @@
 const client = process.env.DAV_USER === undefined ? // Using Google Calendar
-    require("./googleClient.js").default :
-    require('./nextcloudClient.js').default; // Using Nextcloud Calendar
+    await import("./googleClient.js") :
+    await import('./nextcloudClient.js'); // Using Nextcloud Calendar
 
-export default client;
+export default client.default;
