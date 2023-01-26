@@ -9,6 +9,7 @@ npm install
 
 Run the app
 > You need to set the env variables manually
+
 ```bash
 npm start
 ```
@@ -23,6 +24,7 @@ docker-compose up -d --build
 
 ## For Google Calendar
 > Not tested yet
+
 Replace `DAV_*` env variables with the following:
 ```bash
 GOOGLE_USER=your_google_email
