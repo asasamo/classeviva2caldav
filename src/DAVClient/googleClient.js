@@ -4,14 +4,17 @@ import db from "../db/db.js";
 import logger from "../misc/logger.js";
 
 // Create DAV client
-logger.debug("Connecting to DAV server: " + process.env.DAV_URL);
+logger.debug("Connecting to Google CalDAV server");
 const client = await createDAVClient({
-    serverUrl: process.env.DAV_URL,
+    serverUrl: 'https://apidata.googleusercontent.com/caldav/v2/',
     credentials: {
-        username: process.env.DAV_USER,
-        password: process.env.DAV_PASSWORD,
+        tokenUrl: 'https://accounts.google.com/o/oauth2/token',
+        username: process.env.GOOGLE_USER,
+        refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
-    authMethod: 'Basic',
+    authMethod: 'Oauth',
     defaultAccountType: 'caldav',
 });
 
@@ -21,7 +24,7 @@ logger.log("Connected to DAV server!");
 const allCalendars = await client.fetchCalendars();
 
 // Find calendar with the specified name
-const calendar = allCalendars.find(calendar => calendar.displayName === process.env.DAV_CAL);
+const calendar = allCalendars.find(calendar => calendar.displayName === process.env.GOOGLE_CAL);
 
 if (!calendar) {
     throw new Error('Calendar not found');
