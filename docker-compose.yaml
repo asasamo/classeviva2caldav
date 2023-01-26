@@ -7,7 +7,7 @@ services:
       #dockerfile: ./Dockerfile
     env_file:
       - .env
-    container_name: video-generator
+    container_name: classeviva2caldav
     volumes:
       - ./db/db.json:/usr/src/app/src/db/db.json
     environment:

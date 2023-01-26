@@ -1,4 +1,4 @@
-import _const from './const.js';
+import _const from '../const.js';
 
 export default class AgendaEvent {
     constructor(evtId, evtCode, title, description, evtStart, evtEnd) {

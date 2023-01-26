@@ -4,12 +4,12 @@ import { schedule } from "node-cron";
 import User from "./api/User.js";
 import client from "./DAVClient/nextcloudClient.js";
 
-import _const from "./api/const.js";
+import _const from "./const.js";
 
 const user = new User(process.env.USER_ID, process.env.PASSWORD)
 
-// cron job every 30 minutes
-schedule("0,30 * * * *", async () => {
+// cron job
+schedule(_const.cron || "0,30 * * * *", async () => {
     logger.info("Starting cron job...")
 
     // Login
@@ -29,6 +29,7 @@ schedule("0,30 * * * *", async () => {
         .then(agenda => {
             logger.info("Agenda retrieved");
             agenda.forEach(async e => {
+                // Send the event to calendar
                 await client.sendToCalendar(e)
                     .then((res) => {
                         logger.debug("Done");
