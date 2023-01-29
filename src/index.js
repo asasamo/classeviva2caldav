@@ -33,7 +33,6 @@ schedule(_const.cron || "0,30 * * * *", async () => {
                 client.sendToCalendar(e)
                     .then((res) => {
                         logger.debug("Done");
-                        eventsSent++;
                     }).catch(error => {
                         logger.error("Error sending the event to calendar: " + error);
                     });

@@ -33,9 +33,9 @@ class User {
                         this.firstName = response.data.firstName;
                         this.lastName = response.data.lastName;
                         this.token = {
-                            token: response.data.token,
-                            expire: response.data.expire,
-                            release: response.data.release
+                            token: new Date(response.data.token),
+                            expire: new Date(response.data.expire),
+                            release: new Date(response.data.release)
                         };
                         this.isLogged = true;
 
@@ -43,6 +43,8 @@ class User {
 
                         // Set the token as a default header
                         api.defaults.headers.common['Z-Auth-Token'] = this.token.token;
+
+                        console.log(this);
 
                         resolve(this);
                     })
