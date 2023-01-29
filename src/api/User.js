@@ -44,8 +44,6 @@ class User {
                         // Set the token as a default header
                         api.defaults.headers.common['Z-Auth-Token'] = this.token.token;
 
-                        console.log(this);
-
                         resolve(this);
                     })
                     .catch(error => {
